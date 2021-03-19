@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Uncertainty Toolbox &middot; Lanyon
+    
+  </title>
+
+  
+  <link rel="canonical" href="http://localhost:4444/uncertainty_toolbox/">
+  
+
+  <link rel="stylesheet" href="http://localhost:4444/public/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:4444/public/css/syntax.css">
+  <link rel="stylesheet" href="http://localhost:4444/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4444/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="http://localhost:4444/public/favicon.ico">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://localhost:4444/atom.xml">
+
+  
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>A reserved <a href="https://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="http://localhost:4444/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://localhost:4444/about/">About</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="http://localhost:4444/tutorial/">Tutorial</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item active" href="http://localhost:4444/uncertainty_toolbox/">Uncertainty Toolbox</a>
+        
+      
+    
+
+    <a class="sidebar-nav-item" href="/archive/v1.1.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.1.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2021. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Lanyon</a>
+            <small>A Jekyll theme</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">Uncertainty Toolbox</h1>
+  <p align="center"><img src="docs/images/logo.png" width="700" /></p>
+
+<p><strong>Uncertainty Toolbox</strong></p>
+<blockquote>
+  <p>A python toolbox for predictive uncertainty quantification, calibration,
+<a href="#metrics">metrics, and visualization</a>.<br />
+Also: a <a href="docs/glossary.md">glossary of useful terms</a> and a collection
+of <a href="docs/paper_list.md">relevant papers and references</a>.</p>
+</blockquote>
+
+<p> <br />
+Many machine learning methods return predictions along with uncertainties of some form,
+such as distributions or confidence intervals. This begs the questions: How do we
+determine which predictive uncertanties are best? What does it mean to produce a <em>best</em>
+or <em>ideal</em> uncertainty? Are our uncertainties accurate and <em>well calibrated</em>?</p>
+
+<p>Uncertainty Toolbox provides standard metrics to quantify and compare predictive
+uncertainty estimates, gives intuition for these metrics, produces visualizations of
+these metrics/uncertainties, and implements simple “re-calibration” procedures to
+improve these uncertainties.  This toolbox currently focuses on regression tasks.</p>
+
+<h2 id="toolbox-contents">Toolbox Contents</h2>
+
+<p>Uncertainty Toolbox contains:</p>
+<ul>
+  <li><a href="docs/glossary.md">Glossary</a> of terms related to predictive uncertainty
+quantification.</li>
+  <li><a href="#metrics">Metrics</a> for assessing quality of predictive uncertainty estimates.</li>
+  <li><a href="#visualizations">Visualizations</a> for predictive uncertainty estimates and metrics.</li>
+  <li><a href="#recalibration">Recalibration</a> methods for improving the calibration of a predictor.</li>
+  <li>Relevant <a href="docs/paper_list.md">publications and references</a> on metrics and methods.</li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+
+<p>Uncertainty Toolbox requires Python 3.6+. To install, clone and <code class="language-plaintext highlighter-rouge">cd</code> into this repo, and run:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pip install -e .
+</code></pre></div></div>
+
+<h2 id="quick-start">Quick Start</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">uncertainty_toolbox</span> <span class="k">as</span> <span class="n">uct</span>
+
+<span class="c1"># Load an example dataset of 100 predictions, uncertainties, and observations
+</span><span class="n">predictions</span><span class="p">,</span> <span class="n">predictions_std</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">uct</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">synthetic_sine_heteroscedastic</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Compute all uncertainty metrics
+</span><span class="n">metrics</span> <span class="o">=</span> <span class="n">uct</span><span class="p">.</span><span class="n">metrics</span><span class="p">.</span><span class="n">get_all_metrics</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">predictions_std</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+<p>This example computes <a href="#metrics">metrics</a> for a vector of predicted values
+(<code class="language-plaintext highlighter-rouge">predictions</code>) and associated uncertainties (<code class="language-plaintext highlighter-rouge">predictions_std</code>, a vector of standard
+deviations), taken with respect to a corresponding set of observed values <code class="language-plaintext highlighter-rouge">y</code>.</p>
+
+<h2 id="metrics">Metrics</h2>
+
+<p>Uncertainty Toolbox provides a number of <a href="uncertainty_toolbox/metrics.py">metrics</a> to
+quantify and compare predictive uncertainty estimates. For example, the
+<a href="uncertainty_toolbox/metrics.py#L165"><code class="language-plaintext highlighter-rouge">get_all_metrics</code></a> function will return:</p>
+<ol>
+  <li><strong>average calibration</strong>: <em>mean absolute calibration error, root mean squared calibration error, miscalibration area</em></li>
+  <li><strong>adversarial group calibration</strong>: <em>mean absolute adversarial group calibration error, root mean squared adversarial group calibration error</em></li>
+  <li><strong>sharpness</strong>: <em>expected standard deviation</em></li>
+  <li><strong>proper scoring rules</strong>: <em>negative log-likelihood, continuous ranked probability score, check score, interval score</em></li>
+  <li><strong>accuracy</strong>: <em>mean absolute error, root mean squared error, median absolute error, coefficient of determination, correlation</em></li>
+</ol>
+
+<h2 id="visualizations">Visualizations</h2>
+
+<p>The following plots are a few of the <a href="uncertainty_toolbox/viz.py">visualizations</a>
+provided by Uncertainty Toolbox. See <a href="examples/viz_synth_sine.py">this example</a> for code
+to reproduce these plots.</p>
+
+<p><strong>Overconfident</strong> (<em>too little uncertainty</em>)</p>
+<p align="center">
+<img src="docs/images/xy_over.png" alt="" width="32%" align="top" />
+<img src="docs/images/intervals_ordered_over.png" alt="" width="32%" align="top" />
+<img src="docs/images/calibration_over.png" alt="" width="32%" align="top" />
+</p>
+
+<p><strong>Underconfident</strong> (<em>too much uncertainty</em>)</p>
+<p align="center">
+<img src="docs/images/xy_under.png" alt="" width="32%" align="top" />
+<img src="docs/images/intervals_ordered_under.png" alt="" width="32%" align="top" />
+<img src="docs/images/calibration_under.png" alt="" width="32%" align="top" />
+</p>
+
+<p><strong>Well calibrated</strong></p>
+<p align="center">
+<img src="docs/images/xy_correct.png" alt="" width="32%" align="top" />
+<img src="docs/images/intervals_ordered_correct.png" alt="" width="32%" align="top" />
+<img src="docs/images/calibration_correct.png" alt="" width="32%" align="top" />
+</p>
+
+<p>And here are a few of the calibration metrics for the above three cases:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: center">Mean absolute calibration error (MACE)</th>
+      <th style="text-align: center">Root mean squared calibration error (RMSCE)</th>
+      <th style="text-align: center">Miscalibration area (MA)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Overconfident</td>
+      <td style="text-align: center">0.19429</td>
+      <td style="text-align: center">0.21753</td>
+      <td style="text-align: center">0.19625</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Underconfident</td>
+      <td style="text-align: center">0.20692</td>
+      <td style="text-align: center">0.23003</td>
+      <td style="text-align: center">0.20901</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Well calibrated</td>
+      <td style="text-align: center">0.00862</td>
+      <td style="text-align: center">0.01040</td>
+      <td style="text-align: center">0.00865</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="recalibration">Recalibration</h2>
+
+<p>The following plots show the results of a
+<a href="uncertainty_toolbox/recalibration.py">recalibration</a> procedure provided by Uncertainty
+Toolbox, which transforms a set of predictive uncertainties to improve average
+calibration. The algorithm is based on isotonic regression, as proposed by <a href="docs/paper_list.md#calibration-sharpness-and-recalibration-in-deep-learning">Kuleshov et
+al</a>.</p>
+
+<p>See <a href="examples/viz_recalibrate.py">this example</a> for code to reproduce these plots.</p>
+
+<p><strong>Recalibrating overconfident predictions</strong></p>
+<p align="center">
+<img src="docs/images/before_recal_over.png" alt="" width="32%" align="top" />
+<img src="docs/images/recalibrate_arrow.png" alt="" width="20%" align="top" />
+<img src="docs/images/after_recal_over.png" alt="" width="32%" align="top" />
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: center">Mean absolute calibration error (MACE)</th>
+      <th style="text-align: center">Root mean squared calibration error (RMSCE)</th>
+      <th style="text-align: center">Miscalibration area (MA)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Before Recalibration</td>
+      <td style="text-align: center">0.19429</td>
+      <td style="text-align: center">0.21753</td>
+      <td style="text-align: center">0.19625</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">After Recalibration</td>
+      <td style="text-align: center">0.01124</td>
+      <td style="text-align: center">0.02591</td>
+      <td style="text-align: center">0.01117</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Recalibrating underconfident predictions</strong></p>
+<p align="center">
+<img src="docs/images/before_recal_under.png" alt="" width="32%" align="top" />
+<img src="docs/images/recalibrate_arrow.png" alt="" width="20%" align="top" />
+<img src="docs/images/after_recal_under.png" alt="" width="32%" align="top" />
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: center">Mean absolute calibration error (MACE)</th>
+      <th style="text-align: center">Root mean squared calibration error (RMSCE)</th>
+      <th style="text-align: center">Miscalibration area (MA)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Before Recalibration</td>
+      <td style="text-align: center">0.20692</td>
+      <td style="text-align: center">0.23003</td>
+      <td style="text-align: center">0.20901</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">After Recalibration</td>
+      <td style="text-align: center">0.00157</td>
+      <td style="text-align: center">0.00205</td>
+      <td style="text-align: center">0.00132</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="citation">Citation</h2>
+
+<p>If you use this toolbox, please consider citing one of the papers that led to its
+development:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@article{chung2020beyond,
+  title={Beyond Pinball Loss: Quantile Methods for Calibrated Uncertainty Quantification},
+  author={Chung, Youngseog and Neiswanger, Willie and Char, Ian and Schneider, Jeff},
+  journal={arXiv preprint arXiv:2011.09588},
+  year={2020}
+}
+
+@article{tran2020methods,
+  title={Methods for comparing uncertainty quantifications for material property predictions},
+  author={Tran, Kevin and Neiswanger, Willie and Yoon, Junwoong and Zhang, Qingyang and Xing, Eric and Ulissi, Zachary W},
+  journal={Machine Learning: Science and Technology},
+  volume={1},
+  number={2},
+  pages={025006},
+  year={2020},
+  publisher={IOP Publishing}
+}
+</code></pre></div></div>
+
+<h2 id="acknowledgments">Acknowledgments</h2>
+
+<p>Development of Uncertainty Toolbox is <a href="docs/acknowledgments.md">supported by</a> the following organizations.</p>
+<p align="top">
+    <img src="docs/assets/acks_aws.svg" width="7%" />
+    &nbsp; &nbsp;
+    <img src="docs/assets/acks_doe.png" width="8%" />
+    &nbsp; &nbsp;
+    <img src="docs/assets/acks_nsf.png" width="9%" />
+</p>
+
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script src='/public/js/script.js'></script>
+  </body>
+</html>
