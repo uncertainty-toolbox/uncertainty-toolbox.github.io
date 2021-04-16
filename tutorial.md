@@ -3,7 +3,7 @@ layout: page
 title: Tutorial
 ---
 
-<p align="center"><img src="images/logo.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/logo.png" width=700 /></p>
 
 # Introduction
 Modern methods in machine learning have brought about unprecedented predictive performance in a wide range of tasks and applications. While the accuracy of predictions has improved, the need to reason about the uncertainty that accompany these predictions has also grown. Awareness of uncertainty is especially important in application domains like healthcare, criminal justice, and autonomous systems, where some degree of confidence in a prediction is needed in order to make better informed decisions. Estimating this uncertainty is the key problem of predictive uncertainty quantification (UQ).
@@ -34,45 +34,45 @@ To demonstrate Uncertainty Toolbox, we step through a workflow in which we train
 
 For this example we will focus on a 1D regression problem with synthetic data. The data, which is visualized in the plot below, has heteroskedastic uniform noise.
 
-<p align="center"><img src="images/toydata.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/toydata.png" width=700 /></p>
 
 To learn the conditional distribution Y given X, we will use a neural network model that outputs the mean and standard deviation of a Gaussian distribution (often called a Probabilistic Neural Net (PNN)). This model has been shown to have good performance, especially when ensembled ([Chua et al. 2018](https://arxiv.org/abs/1805.12114); [Lakshminarayanan et al. 2017](https://arxiv.org/abs/1612.01474)). However, the performance may suffer here since the true noise distribution is uniform instead of Gaussian. We will skip many of the details of the model and training since Uncertainty Toolbox is focused around model evaluation rather than model learning.
 
 After training the model, we can use Uncertainty Toolbox’s visualizations to sanity check our predictions. Since this is a 1D regression problem, we can visualize the predicted distribution alongside the test data.
 
-<p align="center"><img src="images/xy_plot.png" width=700 /></p>
-<p align="center"><img src="images/confband_plot.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/xy_plot.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/confband_plot.png" width=700 /></p>
 
 
 There are additional useful ways of visualizing model predictions outside of the 1D regression problem. We can also sort the values of the true observed y values in the test set (orange dashed line below) and plot the predicted mean values alongside them (solid blue dots). The 95% prediction interval is given along with the predicted mean values so we can see whether the true observations fall inside the prediction intervals.
 
 
-<p align="center"><img src="images/intvordered_code.png" width=700 /></p>
-<p align="center"><img src="images/ordintv_plot.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/intvordered_code.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/ordintv_plot.png" width=700 /></p>
 
 One of the most important plots to evaluate predictive uncertainty of a model is the average calibration plot. When making a prediction, one can form an $\alpha$-prediction interval that aims to capture observed values $\alpha$-% of the time. We can iterate over values of $\alpha$ and see the proportion of the test data that actually fall within the prediction interval. The calibration plot then shows the predicted proportion of the test data we expect to lie inside the interval on the $x$-axis and the observed proportion of the test data inside the interval on the $y$-axis.
 
 A perfectly calibrated model will produce the line $f(x) = x$. We can use the area between the produced curve and the $f(x) = x$ line to gauge how miscalibrated our model is. By looking at the calibration plot below for our model, we can see that it is slightly miscalibrated by being overconfident. That is, our model often produces predictive distributions that are too narrow.
 
-<p align="center"><img src="images/cal_code.png" width=700 /></p>
-<p align="center"><img src="images/undercal_plot.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/cal_code.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/undercal_plot.png" width=700 /></p>
 
 The above plot gives information about our model’s average calibration, i.e. to produce the plot, we consider the prediction intervals across the entire test set. While this is an important indicator of our model’s performance, it does not guarantee that our model is correct. A truly correct model would be [individually calibrated](https://arxiv.org/abs/2006.10288), but individual calibration usually cannot be measured with a finite dataset.
 
 Instead, we can use adversarial group calibration, a metric that was introduced by [Zhao et. al.](https://arxiv.org/abs/2006.10288). This involves taking many random subsets of the test data, computing miscalibration on each subset, and then reporting the worst miscalibration across the subsets. The plot below shows this metric as we vary the size of the subsets constructed ($x$-axis). For each subset size the procedure is repeated several times and the shaded region shows the standard error. Note that an individually calibrated model should have low calibration error for any group size.
 
-<p align="center"><img src="images/advdata_code.png" width=700 /></p>
-<p align="center"><img src="images/advcal_plot.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/advdata_code.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/advcal_plot.png" width=700 /></p>
 
 Alongside visualizations, Uncertainty Toolbox can be used to compute a suite of metrics given a set of test data, predicted means, and predicted standard deviations. These include accuracy and fit metrics (e.g. RMSE, MAE, and MDAE), calibration metrics, sharpness (average width of prediction intervals), and proper scoring rule metrics. The results are stored and returned in a dictionary object, and can also be printed out as shown below:
 
-<p align="center"><img src="images/metrics_code.png" width=700 /></p>
-<p align="center"><img src="images/metrics_prinout.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/metrics_code.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/metrics_prinout.png" width=700 /></p>
 
 Finally, Uncertainty Toolbox provides a way to perform recalibration. Assuming that there is additional validation data set aside, the outputted prediction intervals can be adjusted so that the model has better average calibration. The algorithm that our toolbox implements is one introduced by [Kuleshov et. al.](https://arxiv.org/abs/1807.00263) which relies on isotonic regression. After recalibrating our model and measuring calibration on the test set, we can see that our model produces wider prediction intervals and is therefore better calibrated.
 
 
-<p align="center"><img src="images/recal_plot.png" width=700 /></p>
+<p align="center"><img src="/assets/tutorial/recal_plot.png" width=700 /></p>
 
 # Conclusion
 

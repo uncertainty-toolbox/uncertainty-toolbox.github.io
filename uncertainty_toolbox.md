@@ -3,7 +3,7 @@ layout: page
 title: Uncertainty Toolbox
 ---
 
-<p align="center"><img src="docs/images/logo.png" width=700 /></p>
+<p align="center"><img src="/assets/uncertainty_toolbox/logo.png" width=700 /></p>
 
 
 **Uncertainty Toolbox**
@@ -79,23 +79,23 @@ to reproduce these plots.
 
 **Overconfident** (_too little uncertainty_)
 <p align="center">
-<img src="docs/images/xy_over.png" alt="" width="32%" align="top">
-<img src="docs/images/intervals_ordered_over.png" alt="" width="32%" align="top">
-<img src="docs/images/calibration_over.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/xy_over.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/intervals_ordered_over.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/calibration_over.png" alt="" width="32%" align="top">
 </p>
 
 **Underconfident** (_too much uncertainty_)
 <p align="center">
-<img src="docs/images/xy_under.png" alt="" width="32%" align="top">
-<img src="docs/images/intervals_ordered_under.png" alt="" width="32%" align="top">
-<img src="docs/images/calibration_under.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/xy_under.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/intervals_ordered_under.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/calibration_under.png" alt="" width="32%" align="top">
 </p>
 
 **Well calibrated**
 <p align="center">
-<img src="docs/images/xy_correct.png" alt="" width="32%" align="top">
-<img src="docs/images/intervals_ordered_correct.png" alt="" width="32%" align="top">
-<img src="docs/images/calibration_correct.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/xy_correct.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/intervals_ordered_correct.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/calibration_correct.png" alt="" width="32%" align="top">
 </p>
 
 And here are a few of the calibration metrics for the above three cases:
@@ -119,9 +119,9 @@ See [this example](examples/viz_recalibrate.py) for code to reproduce these plot
 
 **Recalibrating overconfident predictions**
 <p align="center">
-<img src="docs/images/before_recal_over.png" alt="" width="32%" align="top">
-<img src="docs/images/recalibrate_arrow.png" alt="" width="20%" align="top">
-<img src="docs/images/after_recal_over.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/before_recal_over.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/recalibrate_arrow.png" alt="" width="20%" align="top">
+<img src="/assets/uncertainty_toolbox/after_recal_over.png" alt="" width="32%" align="top">
 </p>
 
 |              | Mean absolute calibration error (MACE) | Root mean squared calibration error (RMSCE) | Miscalibration area (MA) |
@@ -131,9 +131,9 @@ See [this example](examples/viz_recalibrate.py) for code to reproduce these plot
 
 **Recalibrating underconfident predictions**
 <p align="center">
-<img src="docs/images/before_recal_under.png" alt="" width="32%" align="top">
-<img src="docs/images/recalibrate_arrow.png" alt="" width="20%" align="top">
-<img src="docs/images/after_recal_under.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/before_recal_under.png" alt="" width="32%" align="top">
+<img src="/assets/uncertainty_toolbox/recalibrate_arrow.png" alt="" width="20%" align="top">
+<img src="/assets/uncertainty_toolbox/after_recal_under.png" alt="" width="32%" align="top">
 </p>
 
 |              | Mean absolute calibration error (MACE) | Root mean squared calibration error (RMSCE) | Miscalibration area (MA) |
@@ -171,9 +171,9 @@ development:
 
 Development of Uncertainty Toolbox is [supported by](docs/acknowledgments.md) the following organizations.
 <p align="top">
-    <img src="docs/assets/acks_aws.svg" width="7%">
+    <img src="/assets/uncertainty_toolbox/acks_aws.svg" width="7%">
     &nbsp; &nbsp;
-    <img src="docs/assets/acks_doe.png" width="8%">
+    <img src="/assets/uncertainty_toolbox/acks_doe.png" width="8%">
     &nbsp; &nbsp;
-    <img src="docs/assets/acks_nsf.png" width="9%">
+    <img src="/assets/uncertainty_toolbox/acks_nsf.png" width="9%">
 </p>
