@@ -8,9 +8,9 @@ title: Uncertainty Toolbox
 
 **Uncertainty Toolbox**
 > A python toolbox for predictive uncertainty quantification, calibration,
-> [metrics, and visualization](#metrics).\
-> Also: a [glossary of useful terms](docs/glossary.md) and a collection
-> of [relevant papers and references](docs/paper_list.md).
+> [metrics, and visualization](#metrics). 
+> Also: a [glossary of useful terms](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/docs/glossary.md){:target="_blank"} and a collection
+> of [relevant papers and references](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/docs/paper_list.md){:target="_blank"}.
 
 &nbsp;\
 Many machine learning methods return predictions along with uncertainties of some form,
@@ -27,12 +27,12 @@ improve these uncertainties.  This toolbox currently focuses on regression tasks
 ## Toolbox Contents
 
 Uncertainty Toolbox contains:
-* [Glossary](docs/glossary.md) of terms related to predictive uncertainty
+* [Glossary](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/docs/glossary.md){:target="_blank"} of terms related to predictive uncertainty
   quantification.
 * [Metrics](#metrics) for assessing quality of predictive uncertainty estimates.
 * [Visualizations](#visualizations) for predictive uncertainty estimates and metrics.
 * [Recalibration](#recalibration) methods for improving the calibration of a predictor.
-* Relevant [publications and references](docs/paper_list.md) on metrics and methods.
+* Relevant [publications and references](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/docs/paper_list.md){:target="_blank"} on metrics and methods.
 
 
 ## Installation
@@ -78,25 +78,13 @@ provided by Uncertainty Toolbox. See [this example](examples/viz_synth_sine.py) 
 to reproduce these plots.
 
 **Overconfident** (_too little uncertainty_)
-<p align="center">
-<img src="/assets/uncertainty_toolbox/xy_over.png" alt="" width="32%" align="top">
-<img src="/assets/uncertainty_toolbox/intervals_ordered_over.png" alt="" width="32%" align="top">
-<img src="/assets/uncertainty_toolbox/calibration_over.png" alt="" width="32%" align="top">
-</p>
+<p align="center"><img src="/assets/uncertainty_toolbox/overconf.png" width=700 /></p>
 
 **Underconfident** (_too much uncertainty_)
-<p align="center">
-<img src="/assets/uncertainty_toolbox/xy_under.png" alt="" width="32%" align="top">
-<img src="/assets/uncertainty_toolbox/intervals_ordered_under.png" alt="" width="32%" align="top">
-<img src="/assets/uncertainty_toolbox/calibration_under.png" alt="" width="32%" align="top">
-</p>
+<p align="center"><img src="/assets/uncertainty_toolbox/underconf.png" width=700 /></p>
 
 **Well calibrated**
-<p align="center">
-<img src="/assets/uncertainty_toolbox/xy_correct.png" alt="" width="32%" align="top">
-<img src="/assets/uncertainty_toolbox/intervals_ordered_correct.png" alt="" width="32%" align="top">
-<img src="/assets/uncertainty_toolbox/calibration_correct.png" alt="" width="32%" align="top">
-</p>
+<p align="center"><img src="/assets/uncertainty_toolbox/calibrated.png" width=700 /></p>
 
 And here are a few of the calibration metrics for the above three cases:
 
@@ -118,11 +106,7 @@ al](docs/paper_list.md#calibration-sharpness-and-recalibration-in-deep-learning)
 See [this example](examples/viz_recalibrate.py) for code to reproduce these plots.
 
 **Recalibrating overconfident predictions**
-<p align="center">
-<img src="/assets/uncertainty_toolbox/before_recal_over.png" alt="" width="32%" align="top">
-<img src="/assets/uncertainty_toolbox/recalibrate_arrow.png" alt="" width="20%" align="top">
-<img src="/assets/uncertainty_toolbox/after_recal_over.png" alt="" width="32%" align="top">
-</p>
+<p align="center"><img src="/assets/uncertainty_toolbox/recal_over.png" width=700 /></p>
 
 |              | Mean absolute calibration error (MACE) | Root mean squared calibration error (RMSCE) | Miscalibration area (MA) |
 | :----- | :-----: | :-----: | :-----: |
@@ -130,11 +114,7 @@ See [this example](examples/viz_recalibrate.py) for code to reproduce these plot
 | After Recalibration | 0.01124 | 0.02591 | 0.01117 |
 
 **Recalibrating underconfident predictions**
-<p align="center">
-<img src="/assets/uncertainty_toolbox/before_recal_under.png" alt="" width="32%" align="top">
-<img src="/assets/uncertainty_toolbox/recalibrate_arrow.png" alt="" width="20%" align="top">
-<img src="/assets/uncertainty_toolbox/after_recal_under.png" alt="" width="32%" align="top">
-</p>
+<p align="center"><img src="/assets/uncertainty_toolbox/recal_under.png" width=700 /></p>
 
 |              | Mean absolute calibration error (MACE) | Root mean squared calibration error (RMSCE) | Miscalibration area (MA) |
 | :----- | :-----: | :-----: | :-----: |
@@ -170,10 +150,4 @@ development:
 ## Acknowledgments
 
 Development of Uncertainty Toolbox is [supported by](docs/acknowledgments.md) the following organizations.
-<p align="top">
-    <img src="/assets/uncertainty_toolbox/acks_aws.svg" width="7%">
-    &nbsp; &nbsp;
-    <img src="/assets/uncertainty_toolbox/acks_doe.png" width="8%">
-    &nbsp; &nbsp;
-    <img src="/assets/uncertainty_toolbox/acks_nsf.png" width="9%">
-</p>
+<p align="center"><img src="/assets/uncertainty_toolbox/acks.png" width=300 /></p>
