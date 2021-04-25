@@ -1,0 +1,22 @@
+# C extensions
+*.so
+
+# Jupyter notebook
+.ipynb_checkpoints
+
+# Vim
+*.sw*
+
+# Mac
+*.DS_Store
+
+# Results / data
+*hide
+*hide_*
+
+# Python
+*pylintrc*
+*.pkl
+__pycache__/
+*.py[cod]
+*$py.class
