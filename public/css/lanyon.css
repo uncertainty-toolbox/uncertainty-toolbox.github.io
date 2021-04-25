@@ -305,6 +305,8 @@ a.sidebar-nav-item:focus {
 .page,
 .post {
   margin-bottom: 4em;
+  margin-left: -4em;
+  margin-right: -4em;
 }
 
 /* Blog post or page title */
