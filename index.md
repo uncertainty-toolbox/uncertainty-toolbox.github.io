@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Uncertainty Toolbox
+title: About
 ---
 
-<p align="center"><img src="/assets/uncertainty_toolbox/logo.png" width=700 /></p>
+<p align="center"><img src="/assets/uncertainty_toolbox/logo.png" width=600 /></p>
 
 
 **Uncertainty Toolbox**
@@ -33,7 +33,7 @@ Uncertainty Toolbox contains:
 * [Visualizations](#visualizations) for predictive uncertainty estimates and metrics.
 * [Recalibration](#recalibration) methods for improving the calibration of a predictor.
 * Relevant [publications and references](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/docs/paper_list.md){:target="_blank"} on metrics and methods.
-* A [Tutorial](/tutorial/) walking through how to use Uncertainty Toolbox.
+* A [tutorial](/tutorial/) walking through how to use Uncertainty Toolbox.
 
 
 ## Installation
