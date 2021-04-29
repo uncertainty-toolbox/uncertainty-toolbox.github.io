@@ -35,7 +35,9 @@ Sharpness refers to the concentration of the predictive distributions and is a p
 One class of metrics that considers both calibration and sharpness simultaneously is proper scoring rules. According to the seminal work by [Gneiting and Raftery](https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf), a proper scoring rule is any function (with mild conditions) that assigns a score to a predictive probability distribution, where the maximum score of the function is attained when the predictive distribution exactly matches the ground truth distribution (i.e. the distribution of the data). Examples of proper scoring rules include log likelihood, the Brier score, continuous ranked probability score (CRPS), and the check score (a.k.a. pinball loss).
 
 Uncertainty Toolbox provides functionalities to easily compute these metrics. In the next section, we give a concrete example of how to use our toolbox to evaluate the quantification of predictive uncertainty.
-Uncertainty Toolbox in Action
+
+
+## Uncertainty Toolbox in Action
 To demonstrate Uncertainty Toolbox, we step through a workflow in which we train a simple model, visualize its outputs, compute evaluation metrics, and recalibrate it for better performance. Previously, this would have had to be done through an amalgamation of different libraries and/or code written from scratch. Readers are encouraged to see this [Colab tutorial notebook](https://colab.research.google.com/drive/1fg61MFmVmgFYM4CRm_aoiZ_WRdxbIhIe?usp=sharing) for the full code.
 
 For this example we will focus on a 1D regression problem with synthetic data. The data, which is visualized in the plot below, has heteroskedastic uniform noise.
