@@ -6,10 +6,11 @@ title: About
 # About
 
 **Uncertainty Toolbox**
+
 > A python toolbox for predictive uncertainty quantification, calibration,
-> [metrics, and visualization](#metrics). 
-> Also: a [glossary of useful terms](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/docs/glossary.md){:target="_blank"} and a collection
-> of [relevant papers and references](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/docs/paper_list.md){:target="_blank"}.
+> [metrics, and visualizations](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/README.md#metrics).
+> Also: a [glossary of useful terms](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/docs/glossary.md) and a collection
+> of [relevant papers and references](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/docs/paper_list.md).
 
 Many machine learning methods return predictions along with uncertainties of some form,
 such as distributions or confidence intervals. This begs the questions: How do we
