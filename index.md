@@ -7,7 +7,7 @@ title: Home
 
 <br>
 
-**Welcome to the website for Uncertainty Toolbox!**
+**Welcome to the website for [Uncertainty Toolbox](https://github.com/uncertainty-toolbox/uncertainty-toolbox)!**
 
 > A python toolbox for predictive uncertainty quantification, calibration,
 > [metrics, and visualizations](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/README.md#metrics).
@@ -17,5 +17,7 @@ title: Home
 <br>
 
 Please see the following pages:
-* [_About_](/about/): A README, which provides an overview of Uncertainty Toolbox.
-* [_Tutorial_](/tutorial/): A tutorial, which gives some background and shows the toolbox in action.
+* [_About_](/about/): a README, which provides an overview of Uncertainty Toolbox.
+* [_Tutorial_](/tutorial/): a tutorial, which gives some background and shows the toolbox in action.
+* [_Github repo_](https://github.com/uncertainty-toolbox/uncertainty-toolbox): the
+  code for Uncertainty Toolbox, hosted on github.
