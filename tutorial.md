@@ -18,8 +18,8 @@ Despite the machine learning community’s increased interest in UQ, there is a 
 To address this, we present [Uncertainty Toolbox](https://github.com/uncertainty-toolbox/uncertainty-toolbox): a comprehensive library containing evaluation metrics, visualizations, and recalibration tools. The toolbox has a simple interface, making it easy to visualize predictive uncertainties or compute many different metrics at once. Alongside this suite of tools, we provide a description of all metrics, a glossary of key terms, and a list of important papers for those unfamiliar with the field. All of this can be found in our GitHub repository: [https://github.com/uncertainty-toolbox/uncertainty-toolbox](https://github.com/uncertainty-toolbox/uncertainty-toolbox)
 
 In this blog post, we will:
-Provide a brief background on UQ by describing the key concepts and evaluation metrics for those unfamiliar with the topic.
-Show how to easily compute metrics for, visualize, and recalibrate predictive uncertainties by walking through a use case of Uncertainty Toolbox in a [Colab notebook](https://colab.research.google.com/drive/1fg61MFmVmgFYM4CRm_aoiZ_WRdxbIhIe?usp=sharing).
+* Provide a brief background on UQ by describing the key concepts and evaluation metrics for those unfamiliar with the topic.
+* Show how to easily compute metrics for, visualize, and recalibrate predictive uncertainties by walking through a use case of Uncertainty Toolbox in a [Colab notebook](https://colab.research.google.com/drive/1fg61MFmVmgFYM4CRm_aoiZ_WRdxbIhIe?usp=sharing).
 
 
 ## Key Concepts in Predictive Uncertainty

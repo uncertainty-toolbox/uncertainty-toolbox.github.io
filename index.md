@@ -19,5 +19,5 @@ title: Home
 Please see the following pages:
 * [_About_](/about/): a README, which provides an overview of Uncertainty Toolbox.
 * [_Tutorial_](/tutorial/): a tutorial, which gives some background and shows the toolbox in action.
-* [_Github repo_](https://github.com/uncertainty-toolbox/uncertainty-toolbox): the
+* [_Github Repo_](https://github.com/uncertainty-toolbox/uncertainty-toolbox): the
   code for Uncertainty Toolbox, hosted on github.
