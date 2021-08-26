@@ -86,14 +86,44 @@ uct.viz.plot_adversarial_group_calibration(pred_mean, pred_std, te_y)
 
 <p align="center"><img src="/assets/tutorial/advcal_plot.svg" width=500 /></p>
 
-Alongside visualizations, Uncertainty Toolbox can be used to compute a suite of metrics given a set of test data, predicted means, and predicted standard deviations. These include accuracy and fit metrics (e.g. RMSE, MAE, and MDAE), calibration metrics, sharpness (average width of prediction intervals), and proper scoring rule metrics. The results are stored and returned in a dictionary object, and can also be printed out as shown below:
+Alongside visualizations, Uncertainty Toolbox can be used to compute a suite of metrics given a set of test data, predicted means, and predicted standard deviations. These include accuracy and fit metrics (e.g. RMSE, MAE, and MDAE), calibration metrics, sharpness (average width of prediction intervals), and proper scoring rule metrics. The results are stored and returned in a dictionary object, and can also be printed out.
 
 ```python
 # Get all metrics
 pnn_metrics = uct.metrics.get_all_metrics(pred_mean, pred_std, te_y)
 ```
 
-<p align="center"><img src="/assets/tutorial/metrics_printout.png" width=400 /></p>
+Here is the output:
+
+```
+===================== Accuracy Metrics =====================
+  MAE           1.123
+  RMSE          2.056
+  MDAE          0.661
+  MARPD         62.876
+  R2            0.619
+  Correlation   0.849
+=============== Average Calibration Metrics ================
+  Root-mean-squared Calibration Error   0.143
+  Mean-absolute Calibration Error       0.132
+  Miscalibration Area                   0.133
+========== Adversarial Group Calibration Metrics ===========
+  Mean-absolute Adversarial Group Calibration Error
+     Group Size: 0.11 -- Calibration Error: 0.204
+     Group Size: 0.56 -- Calibration Error: 0.164
+     Group Size: 1.00 -- Calibration Error: 0.132
+  Root-mean-squared Adversarial Group Calibration Error
+     Group Size: 0.11 -- Calibration Error: 0.238
+     Group Size: 0.56 -- Calibration Error: 0.176
+     Group Size: 1.00 -- Calibration Error: 0.143
+==================== Sharpness Metrics =====================
+  Sharpness   2.144
+=================== Scoring Rule Metrics ===================
+  Negative-log-likelihood   1.104
+  CRPS                      0.737
+  Check Score               0.372
+  Interval Score            3.479
+```
 
 Finally, Uncertainty Toolbox provides a way to perform recalibration. Assuming that there is additional validation data set aside, the outputted prediction intervals can be adjusted so that the model has better average calibration. The algorithm that our toolbox implements is one introduced by [Kuleshov et. al.](https://arxiv.org/abs/1807.00263) which relies on isotonic regression. After recalibrating our model and measuring calibration on the test set, we can see that our model is better calibrated and less overconfident.
 
@@ -172,7 +202,7 @@ plt.fill_between(te_x, recal_bounds.lower, recal_bounds.upper,
 
 ## Conclusion
 
-In this blog post we briefly summarized some key concepts in uncertainty and walked through an example use of Uncertainty Toolbox. We hope that this toolbox is useful for accelerating and uniting research efforts for uncertainty in machine learning. Looking towards the future, we plan to expand the scope to cover additional types of models and settings.
+In this tutorial post we briefly summarized some key concepts in uncertainty and walked through an example use of Uncertainty Toolbox. We hope that this toolbox is useful for accelerating and uniting research efforts for uncertainty in machine learning. Looking towards the future, we plan to expand the scope to cover additional types of models and settings.
 
 
 ## References
