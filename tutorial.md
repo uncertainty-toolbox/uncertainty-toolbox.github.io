@@ -42,7 +42,7 @@ To demonstrate Uncertainty Toolbox, we step through a workflow in which we train
 
 For this example we will focus on a 1D regression problem with synthetic data. The data, which is visualized in the plot below, has heteroskedastic uniform noise.
 
-<p align="center"><img src="/assets/tutorial/toydata.png" width=500 /></p>
+<p align="center"><img src="/assets/tutorial/toydata.svg" width=500 /></p>
 
 To learn the conditional distribution Y given X, we will use a neural network model that outputs the mean and standard deviation of a Gaussian distribution (often called a Probabilistic Neural Net (PNN)). This model has been shown to have good performance, especially when ensembled ([Chua et al. 2018](https://arxiv.org/abs/1805.12114); [Lakshminarayanan et al. 2017](https://arxiv.org/abs/1612.01474)). However, the performance may suffer here since the true noise distribution is uniform instead of Gaussian. We will skip many of the details of the model and training since Uncertainty Toolbox is focused around model evaluation rather than model learning.
 
@@ -53,7 +53,7 @@ After training the model, we can use Uncertainty Toolbox’s visualizations to s
 uct.viz.plot_xy(pred_mean, pred_std, te_y, te_x)
 ```
 
-<p align="center"><img src="/assets/tutorial/confband_plot.png" width=400 /></p>
+<p align="center"><img src="/assets/tutorial/confband_plot.svg" width=400 /></p>
 
 There are additional useful ways of visualizing model predictions outside of the 1D regression problem. We can also sort the values of the true observed y values in the test set (orange dashed line below) and plot the predicted mean values alongside them (solid blue dots). The 95% prediction interval is given along with the predicted mean values so we can see whether the true observations fall inside the prediction intervals.
 
@@ -62,7 +62,7 @@ There are additional useful ways of visualizing model predictions outside of the
 uct.viz.plot_intervals_ordered(pred_mean, pred_std, te_y)
 ```
 
-<p align="center"><img src="/assets/tutorial/ordintv_plot.png" width=400 /></p>
+<p align="center"><img src="/assets/tutorial/ordintv_plot.svg" width=400 /></p>
 
 One of the most important plots to evaluate predictive uncertainty of a model is the average calibration plot. When making a prediction, one can form an α-prediction interval that aims to capture observed values α% of the time. We can iterate over values of α and see the proportion of the test data that actually fall within the prediction interval. The calibration plot then shows the predicted proportion of the test data we expect to lie inside the interval on the x-axis and the observed proportion of the test data inside the interval on the y-axis.
 
@@ -73,7 +73,7 @@ A perfectly calibrated model will produce the line f(x) = x. We can use the area
 uct.viz.plot_calibration(pred_mean, pred_std, te_y)
 ```
 
-<p align="center"><img src="/assets/tutorial/undercal_plot.png" width=400 /></p>
+<p align="center"><img src="/assets/tutorial/undercal_plot.svg" width=400 /></p>
 
 The above plot gives information about our model’s average calibration, i.e. to produce the plot, we consider the prediction intervals across the entire test set. While this is an important indicator of our model’s performance, it does not guarantee that our model is correct. A truly correct model would be [individually calibrated](https://arxiv.org/abs/2006.10288), but individual calibration usually cannot be measured with a finite dataset.
 
@@ -84,7 +84,7 @@ Instead, we can use adversarial group calibration, a metric that was introduced 
 uct.viz.plot_adversarial_group_calibration(pred_mean, pred_std, te_y)
 ```
 
-<p align="center"><img src="/assets/tutorial/advcal_plot.png" width=500 /></p>
+<p align="center"><img src="/assets/tutorial/advcal_plot.svg" width=500 /></p>
 
 Alongside visualizations, Uncertainty Toolbox can be used to compute a suite of metrics given a set of test data, predicted means, and predicted standard deviations. These include accuracy and fit metrics (e.g. RMSE, MAE, and MDAE), calibration metrics, sharpness (average width of prediction intervals), and proper scoring rule metrics. The results are stored and returned in a dictionary object, and can also be printed out as shown below:
 
@@ -95,11 +95,80 @@ pnn_metrics = uct.metrics.get_all_metrics(pred_mean, pred_std, te_y)
 
 <p align="center"><img src="/assets/tutorial/metrics_printout.png" width=400 /></p>
 
-Finally, Uncertainty Toolbox provides a way to perform recalibration. Assuming that there is additional validation data set aside, the outputted prediction intervals can be adjusted so that the model has better average calibration. The algorithm that our toolbox implements is one introduced by [Kuleshov et. al.](https://arxiv.org/abs/1807.00263) which relies on isotonic regression. After recalibrating our model and measuring calibration on the test set, we can see that our model produces wider prediction intervals and is therefore better calibrated.
+Finally, Uncertainty Toolbox provides a way to perform recalibration. Assuming that there is additional validation data set aside, the outputted prediction intervals can be adjusted so that the model has better average calibration. The algorithm that our toolbox implements is one introduced by [Kuleshov et. al.](https://arxiv.org/abs/1807.00263) which relies on isotonic regression. After recalibrating our model and measuring calibration on the test set, we can see that our model is better calibrated and less overconfident.
 
+```python
+# Get separate recalibration data.
+recal_x, recal_y = create_1d_data(500)
 
-<p align="center"><img src="/assets/tutorial/recal_plot.png" width=400 /></p>
+# Get the predictive uncertainties in terms of expected proportions and observed proportions on the recalibration set.
+recal_pred_mean, recal_pred_std = pnn.get_mean_and_standard_deviation(
+    recal_x.reshape(-1, 1)
+)
+recal_pred_mean = recal_pred_mean.flatten()
+recal_pred_std = recal_pred_std.flatten()
+exp_props, obs_props = uct.metrics_calibration.get_proportion_lists_vectorized(
+    recal_pred_mean, recal_pred_std, recal_y,
+)
 
+# Train a recalibration model.
+recal_model = uct.recalibration.iso_recal(exp_props, obs_props)
+
+# Get the expected props and observed props using the new recalibrated model
+te_recal_exp_props, te_recal_obs_props = uct.metrics_calibration.get_proportion_lists_vectorized(
+    pred_mean, pred_std, te_y, recal_model=recal_model
+)
+
+# Show the updated average calibration plot
+uct.viz.plot_calibration(pred_mean, pred_std, te_y,
+                         exp_props=te_recal_exp_props,
+                         obs_props=te_recal_obs_props)
+```
+
+<p align="center"><img src="/assets/tutorial/recal_plot.svg" width=400 /></p>
+
+We also provide utilities to easily get prediction intervals for both the original and recalibrated model. We show how to get the 95% centered prediction interval below.
+
+```python
+orig_bounds = uct.metrics_calibration.get_prediction_interval(
+    pred_mean, pred_std, 0.95, None)
+recal_bounds = uct.metrics_calibration.get_prediction_interval(
+    pred_mean, pred_std, 0.95, recal_model)
+plt.fill_between(te_x, orig_bounds.lower, orig_bounds.upper,
+                 alpha=0.6, label='Original')
+plt.fill_between(te_x, recal_bounds.lower, recal_bounds.upper,
+                 alpha=0.4, label='Recalibrated')
+```
+
+<p align="center"><img src="/assets/tutorial/quantpi_plot.svg" width=400 /></p>
+
+Because the above techniques remaps quantiles of the original distribution, the recalibrated distribution is almost certainly not Gaussian. If one wants to constrain the recalibrated distribution to be Gaussian, the toolbox provides a way to compute a scaling factor for the standard deviation. This scaling factor can be optimized with respect to a variety of metrics, but we show how recalibrate to better miscalibration area below.
+
+```python
+std_scaling = uct.recalibration.optimize_recalibration_ratio(
+      recal_pred_mean, recal_pred_std, recal_y, criterion="miscal"
+)
+new_pred_stds = std_scaling * pred_std
+ # Show the updated average calibration plot
+uct.viz.plot_calibration(pred_mean, new_pred_stds, te_y)
+```
+
+<p align="center"><img src="/assets/tutorial/stdrecal_plot.svg" width=400 /></p>
+
+Like before, we can easily get the new, recalibrated prediction intervals.
+
+```python
+orig_bounds = uct.metrics_calibration.get_prediction_interval(
+    pred_mean, pred_std, 0.95)
+recal_bounds = uct.metrics_calibration.get_prediction_interval(
+    pred_mean, new_pred_stds, 0.95)
+plt.fill_between(te_x, orig_bounds.lower, orig_bounds.upper,
+                 alpha=0.6, label='Original')
+plt.fill_between(te_x, recal_bounds.lower, recal_bounds.upper,
+                 alpha=0.4, label='Recalibrated')
+```
+
+<p align="center"><img src="/assets/tutorial/stdpi_plot.svg" width=400 /></p>
 
 ## Conclusion
 
