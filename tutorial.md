@@ -19,7 +19,7 @@ To address this, we present [Uncertainty Toolbox](https://github.com/uncertainty
 
 In this blog post, we will:
 * Provide a brief background on UQ by describing the key concepts and evaluation metrics for those unfamiliar with the topic.
-* Show how to easily compute metrics for, visualize, and recalibrate predictive uncertainties by walking through a use case of Uncertainty Toolbox in a [Colab notebook](https://colab.research.google.com/drive/1fg61MFmVmgFYM4CRm_aoiZ_WRdxbIhIe?usp=sharing).
+* Show how to easily compute metrics for, visualize, and recalibrate predictive uncertainties by walking through a use case of Uncertainty Toolbox in a [Colab notebook](https://colab.research.google.com/drive/1lbhwb6MP8FvQh9Q7Jldt4PuPEeSldsG5?usp=sharing).
 
 
 ## Key Concepts in Predictive Uncertainty
@@ -38,7 +38,7 @@ Uncertainty Toolbox provides functionalities to easily compute these metrics. In
 
 
 ## Uncertainty Toolbox in Action
-To demonstrate Uncertainty Toolbox, we step through a workflow in which we train a simple model, visualize its outputs, compute evaluation metrics, and recalibrate it for better performance. Previously, this would have had to be done through an amalgamation of different libraries and/or code written from scratch. Readers are encouraged to see this [Colab tutorial notebook](https://colab.research.google.com/drive/1fg61MFmVmgFYM4CRm_aoiZ_WRdxbIhIe?usp=sharing) for the full code.
+To demonstrate Uncertainty Toolbox, we step through a workflow in which we train a simple model, visualize its outputs, compute evaluation metrics, and recalibrate it for better performance. Previously, this would have had to be done through an amalgamation of different libraries and/or code written from scratch. Readers are encouraged to see this [Colab tutorial notebook](https://colab.research.google.com/drive/1lbhwb6MP8FvQh9Q7Jldt4PuPEeSldsG5?usp=sharing) for the full code.
 
 For this example we will focus on a 1D regression problem with synthetic data. The data, which is visualized in the plot below, has heteroskedastic uniform noise.
 
