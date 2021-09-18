@@ -21,5 +21,5 @@ Please see the following pages:
 * [_Tutorial_](/tutorial/): a tutorial, which gives some background and shows the toolbox in action.
 * [_Github Repo_](https://github.com/uncertainty-toolbox/uncertainty-toolbox): the
   code for Uncertainty Toolbox, hosted on github.
-* [_Documentation_](https://uncertainty-toolbox.github.io/docs/): Documentation and API
-  reference for Uncertainty Toolbox.
+* [_Docs_](https://uncertainty-toolbox.github.io/docs/): documentation and API reference
+  for Uncertainty Toolbox.
