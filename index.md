@@ -3,7 +3,7 @@ layout: page
 title: Home
 ---
 
-<p align="center"><img src="/assets/uncertainty_toolbox/logo.png" width=600 /></p>
+<p align="center"><img src="/assets/uncertainty_toolbox/logo.svg" width=600 /></p>
 
 <br>
 
