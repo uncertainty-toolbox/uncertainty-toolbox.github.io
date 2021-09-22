@@ -7,7 +7,7 @@ title: Tutorial
 
 <br>
 
-<p align="center"><img src="/assets/tutorial/logo.png" width=550 /></p>
+<p align="center"><img src="/assets/tutorial/logo_tutorial.svg" width=550 /></p>
 
 
 ## Introduction
