@@ -132,11 +132,7 @@ example](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/
 for code to reproduce these plots.
 
 **Recalibrating overconfident predictions**
-<p style="text-align:center; display:block;">
-<img src="/assets/uncertainty_toolbox/before_recal_0.svg" alt="" width="32%" align="top">
-<img src="/assets/uncertainty_toolbox/recal_arrow.svg" alt="" width="22%" align="top">
-<img src="/assets/uncertainty_toolbox/after_recal_0.svg" alt="" width="32%" align="top">
-</p>
+<p style="text-align:center; display:block;"><img src="/assets/uncertainty_toolbox/recal_over.png" width=700 /></p>
 
 |              | Mean absolute calibration error (MACE) | Root mean squared calibration error (RMSCE) | Miscalibration area (MA) |
 | :----- | :-----: | :-----: | :-----: |
@@ -144,11 +140,7 @@ for code to reproduce these plots.
 | After Recalibration | 0.01124 | 0.02591 | 0.01117 |
 
 **Recalibrating underconfident predictions**
-<p style="text-align:center; display:block;">
-<img src="/assets/uncertainty_toolbox/before_recal_1.svg" alt="" width="32%" align="top">
-<img src="/assets/uncertainty_toolbox/recal_arrow.svg" alt="" width="22%" align="top">
-<img src="/assets/uncertainty_toolbox/after_recal_1.svg" alt="" width="32%" align="top">
-</p>
+<p style="text-align:center; display:block;"><img src="/assets/uncertainty_toolbox/recal_under.png" width=700 /></p>
 
 |              | Mean absolute calibration error (MACE) | Root mean squared calibration error (RMSCE) | Miscalibration area (MA) |
 | :----- | :-----: | :-----: | :-----: |
@@ -205,17 +197,5 @@ Development of Uncertainty Toolbox is [supported
 by](https://github.com/uncertainty-toolbox/uncertainty-toolbox/blob/master/docs/acknowledgments.md)
 the following organizations.
 <p align="top">
-    <img src="/assets/uncertainty_toolbox/acks_aws.svg" width="7%">
-    &nbsp; &nbsp;
-    <img src="/assets/uncertainty_toolbox/acks_doe.png" width="8%">
-    &nbsp; &nbsp;
-    <img src="/assets/uncertainty_toolbox/acks_nsf.png" width="9%">
-    &nbsp; &nbsp;
-    <img src="/assets/uncertainty_toolbox/cmu_logo.png" width="35%">
-    &nbsp; &nbsp;
-</p>
-
-<p>
-    <img src="/assets/uncertainty_toolbox/stanford_logo.png" width="20%">
-    &nbsp; &nbsp;
+<img src="/assets/uncertainty_toolbox/acks_aws.svg" width="7%"><img src="/assets/uncertainty_toolbox/acks_doe.png" width="8%"><img src="/assets/uncertainty_toolbox/acks_nsf.png" width="9%"><img src="/assets/uncertainty_toolbox/cmu_logo.png" width="35%"><img src="/assets/uncertainty_toolbox/stanford_logo.png" width="20%">
 </p>
