@@ -78,13 +78,13 @@ provided by Uncertainty Toolbox. See [this example](examples/viz_synth_sine.py) 
 to reproduce these plots.
 
 **Overconfident** (_too little uncertainty_)
-<p align="center"><img src="/assets/uncertainty_toolbox/overconf.png" width=700 /></p>
+<p style="text-align:center; display:block;"><img src="/assets/uncertainty_toolbox/overconf.png" width=700 /></p>
 
 **Underconfident** (_too much uncertainty_)
-<p align="center"><img src="/assets/uncertainty_toolbox/underconf.png" width=700 /></p>
+<p style="text-align:center; display:block;"><img src="/assets/uncertainty_toolbox/underconf.png" width=700 /></p>
 
 **Well calibrated**
-<p align="center"><img src="/assets/uncertainty_toolbox/calibrated.png" width=700 /></p>
+<p style="text-align:center; display:block;"><img src="/assets/uncertainty_toolbox/calibrated.png" width=700 /></p>
 
 And here are a few of the calibration metrics for the above three cases:
 
@@ -106,7 +106,7 @@ al](docs/paper_list.md#calibration-sharpness-and-recalibration-in-deep-learning)
 See [this example](examples/viz_recalibrate.py) for code to reproduce these plots.
 
 **Recalibrating overconfident predictions**
-<p align="center"><img src="/assets/uncertainty_toolbox/recal_over.png" width=700 /></p>
+<p style="text-align:center; display:block;"><img src="/assets/uncertainty_toolbox/recal_over.png" width=700 /></p>
 
 |              | Mean absolute calibration error (MACE) | Root mean squared calibration error (RMSCE) | Miscalibration area (MA) |
 | :----- | :-----: | :-----: | :-----: |
@@ -114,7 +114,7 @@ See [this example](examples/viz_recalibrate.py) for code to reproduce these plot
 | After Recalibration | 0.01124 | 0.02591 | 0.01117 |
 
 **Recalibrating underconfident predictions**
-<p align="center"><img src="/assets/uncertainty_toolbox/recal_under.png" width=700 /></p>
+<p style="text-align:center; display:block;"><img src="/assets/uncertainty_toolbox/recal_under.png" width=700 /></p>
 
 |              | Mean absolute calibration error (MACE) | Root mean squared calibration error (RMSCE) | Miscalibration area (MA) |
 | :----- | :-----: | :-----: | :-----: |
@@ -150,4 +150,4 @@ development:
 ## Acknowledgments
 
 Development of Uncertainty Toolbox is [supported by](docs/acknowledgments.md) the following organizations.
-<p align="center"><img src="/assets/uncertainty_toolbox/acks.png" width=300 /></p>
+<p style="text-align:center; display:block;"><img src="/assets/uncertainty_toolbox/acks.png" width=300 /></p>
